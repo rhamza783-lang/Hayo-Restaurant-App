@@ -37,8 +37,8 @@ jobs:
         run: eas build -p android --profile preview --non-interactive
 
       # 7. Upload the generated APK so you can download it
-      - name: Upload APK Artifact
-        uses: actions/upload-artifact@v3
+           - name: Upload APK Artifact
+        uses: actions/upload-artifact@v4
         with:
           path: dist/*.apk
           if-no-files-found: error
