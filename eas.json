@@ -1,11 +1,12 @@
 {
   "cli": {
-    "version": ">= 2.0.0"
+    "appVersionSource": "remote"
   },
   "build": {
     "preview": {
       "android": {
-        "buildType": "apk"
+        "buildType": "apk",
+        "gradleCommand": ":app:assemblePreview"
       }
     },
     "production": {
@@ -13,5 +14,8 @@
         "buildType": "apk"
       }
     }
+  },
+  "submit": {
+    "production": {}
   }
 }
