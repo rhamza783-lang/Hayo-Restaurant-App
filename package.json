@@ -1,0 +1,25 @@
+{
+  "name": "hayo-restaurant-app",
+  "version": "1.0.0",
+  "description": "Simple restaurant app - v1.0.0",
+  "main": "App.tsx",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web"
+  },
+  "dependencies": {
+    "react": "18.2.0",
+    "react-native": "0.72.0",
+    "@react-navigation/native": "^6.0.0",
+    "@react-navigation/stack": "^6.0.0",
+    "expo": "~49.0.0",
+    "typescript": "~4.8.0"
+  },
+  "devDependencies": {
+    "@types/react": "~18.0.0",
+    "@types/react-native": "~0.72.0"
+  },
+  "private": true
+}
