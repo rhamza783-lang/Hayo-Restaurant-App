@@ -1,4 +1,4 @@
-name: Build APK (Guest Mode)
+name: Build APK (Using EXPO_TOKEN)
 
 on:
   push:
@@ -14,34 +14,28 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      # 2. Use Node.js 20 (required by new packages)
+      # 2. Setup Node.js 20
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '20'
           cache: 'npm'
 
-      # 3. Install EAS CLI
+      # 3. Install EAS CLI globally
       - name: Install EAS CLI
         run: npm install -g eas-cli
 
-      # 4. Install dependencies
+      # 4. Install project dependencies
       - name: Install Dependencies
         run: npm install
 
-      # 5. Log in to Expo using CI mode (new way of guest login)
-      - name: Log in to Expo (Guest Mode)
-        run: echo "Logging in to Expo..."
-        env:
-          CI: true
-
-      # 6. Build the APK
+      # 5. Build the APK using EXPO_TOKEN
       - name: Build APK
         run: eas build -p android --profile preview --non-interactive
         env:
-          EAS_BUILD_PROFILE: preview
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
 
-      # 7. Upload the APK
+      # 6. Upload the generated APK
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
         with:
