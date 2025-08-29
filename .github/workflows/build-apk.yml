@@ -2,7 +2,7 @@ name: Build APK (Guest Mode)
 
 on:
   push:
-    branches: [ main, master ]  # Trigger when you push to main branch
+    branches: [ main, master ]  # Triggers the build when you push to main or master
 
 jobs:
   build-apk:
@@ -10,34 +10,34 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Get your code
+      # 1. Get your code from GitHub
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      # 2. Install Node.js (required for Expo)
+      # 2. Install Node.js (needed for Expo)
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
 
-      # 3. Install Expo CLI globally
+      # 3. Install EAS CLI (Expo's build tool)
       - name: Install EAS CLI
         run: npm install -g eas-cli
 
-      # 4. Install your app dependencies
+      # 4. Install your app's dependencies (from package.json)
       - name: Install Dependencies
         run: npm install
 
-      # 5. Log in to Expo as Guest (no account needed!)
+      # 5. Log in to Expo as a guest (no account needed!)
       - name: Log in to Expo (Guest)
         run: npx expo login --non-interactive --guest
 
-      # 6. Build the APK using eas.json
+      # 6. Build the Android APK
       - name: Build APK
         run: eas build -p android --profile preview --non-interactive
 
-      # 7. Upload the generated APK so you can download it
-           - name: Upload APK Artifact
+      # 7. Upload the APK so you can download it
+      - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
         with:
           path: dist/*.apk
